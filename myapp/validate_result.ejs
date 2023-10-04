@@ -1,0 +1,17 @@
+<html>
+ <head>
+  <title>Isikukoodi valideerimine</title>
+  <meta charset="UFC-8">
+  <meta name="viewport" content="width=device-width, intial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstap/.min.css" rel="stylesheet">
+ </head>
+ <body>
+  <div class="container">
+  <h2>Isikukoodi valideerimis tulemus</h2>
+  <p>
+  Isik isikukoodiga <%= idcode %> <%= sex_description %> (<%= sex_number %>...), kes on sündinud <%= birthdayString %> (...<%= year %><%= month %><%= day %>...). Tema isikukood registreeriti <%= register place %> ja sel päeval oli ta <%= order number %>. <%= sex_control %>soost isik (...<%= addition_info %>). Isikukoodi kontrollnumbriks on <%= idcode_control_number %> (...<%= idControl %>).
+  </p>
+  <a href="/">Valideeri uus isikukood</a>
+  </div>
+  </body>
+  </html>

@@ -93,6 +93,29 @@ const idInfo = (idcode) => {
 	let birthdayString = birthdayDescription(sex, fullYear(sex, year), month, day)
 	let placeAndOrder = birthayPlaceData(addInfo, year, sex)
 
+    const resultInfo = {
+    	idcode: idcode,
+    	sex_description: sexControl(sex),
+    	sex_number: sex,
+    	birthdayString: birthdayString,
+    	year: year,
+    	month: month,
+    	day: day,
+    	register_place: parseInt(fullYear(sex, year)) < 2013 ? placeAndOrder.place + 'osakonnas (...' + addInfo.slice(0, 2) + '...)' : 'Eestis',
+    	order_number: placeAndOrder.order,
+    	sex_control: sexControl(sex) == 'naine' ? sexControl(sex).slice(0, -2)+'s' :
+    	    sexControl(sex),
+    	addition_info: addInfo,
+    	idcode_control_number: control(idcode),
+    	idControl: idControl
+    }
+
+
+
+
+
+
+
 	return `
 	  <head>
 	    <title>Isikoodi valideerimine</title>

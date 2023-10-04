@@ -1,30 +1,32 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 
-// use html view files
-const path = require('path')
-app.use(express.static(path.join(__dirname, 'views'))) 
+// Set the view engine to EJS
+app.set('view engine', 'ejs');
 
-// show form data in request
-const parseUrl = require('body-parser');
-let encodeUrl = parseUrl.urlencoded({ extended: true });
+// Set the views directory to the current directory (where your application file is located)
+app.set('views', __dirname);
+
+const bodyParser = require('body-parser');
+const encodeUrl = bodyParser.urlencoded({ extended: true });
 
 app.get('/', (req, res) => {
-  console.log('test')
-  console.log(path.join(__dirname, 'validate_form.html'))
-  res.sendFile(path.join(__dirname, 'validate_form.html'))
-})
+  res.render('validate_form');
+});
+
+const validId = require('./validate');
 
 
-const validId = require('./validate')
+
 
 app.post('/validate', encodeUrl, (req, res) => {
-  console.log('form data validation')
-  console.log(req.body)
-  console.log(req.body.id_code)
-  res.send(validId.idInfo(req.body.id_code))
-})
+  console.log('form data validation');
+  console.log(req.body);
+  console.log(req.body.id_code);
+  res.send(validId.idInfo(req.body.id_code));
+  res.render('validate_result', validId.idInfo(req.body.id_code))
+});
 
 app.listen(3000, () => {
-  console.log('Example app is started at http://localhost:3000')
-})
+  console.log('Example app is started at http://localhost:3000');
+});
